@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 
-
+//let TileLayer, WMSTileLayer, LayersControl, FeatureGroup, Circle, BaseLayer, Overlay, EditControl
 class App extends Component {
     constructor() {
         super()
-        this.state = { showMap: false }
-        this.RL = require('react-leaflet');
-        this.RLD = require('react-leaflet-draw');
+        this.state = {
+            showMap: false
+        }
+
+        this.RL = { LayersControl: {}};
+        this.RLD = {};
     }
 
     componentDidMount() {
-        this.setState = {
-            showMap: true
-        }
+        this.RL = require('react-leaflet');
+        this.RLD = require('react-leaflet-draw');
+
+        this.setState({
+            showMap: true,
+        })
     }
 
     render() {
@@ -24,7 +30,7 @@ class App extends Component {
         const { BaseLayer, Overlay } = LayersControl;
         const { EditControl } = this.RLD;
 
-        return (
+        return this.state.showMap ? (
             <Map center={center} zoom={7} style={{ height: "100vh" }}>
 
                 <LayersControl position="topright">
@@ -81,7 +87,7 @@ class App extends Component {
                     <Circle center={[51.51, -0.06]} radius={200} />
                 </FeatureGroup>
             </Map>
-        );
+        ) : <div>Loading...</div>
     }
 }
 
