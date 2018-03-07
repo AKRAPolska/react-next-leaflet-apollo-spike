@@ -1,35 +1,31 @@
-import React, { Component } from 'react'
-
-let Map, LayersControl, TileLayer, WMSTileLayer, BaseLayer, Overlay
+import React, { Component } from 'react';
 
 
 class App extends Component {
     constructor() {
         super()
         this.state = { showMap: false }
+        this.RL = require('react-leaflet');
+        this.RLD = require('react-leaflet-draw');
     }
 
     componentDidMount() {
-        let RL = require('react-leaflet')
-        Map = RL.Map
-        TileLayer = RL.TileLayer
-        WMSTileLayer = RL.WMSTileLayer
-        LayersControl = RL.LayersControl
-        BaseLayer = LayersControl.BaseLayer
-        Overlay = LayersControl.Overlay
-        
-        this.setState({ 
-            showMap: true 
-        })
+        this.setState = {
+            showMap: true
+        }
     }
 
     render() {
         const center = [52, 19]
         const TRUE = true;
-        const OPACITY = 0.5
+        const OPACITY = 0.5;
 
-        return this.state.showMap ? (
-            <Map center={center} zoom={5} style={{ height: "100vh" }}>
+        const { Map, TileLayer, WMSTileLayer, LayersControl, FeatureGroup, Circle } = this.RL;
+        const { BaseLayer, Overlay } = LayersControl;
+        const { EditControl } = this.RLD;
+
+        return (
+            <Map center={center} zoom={7} style={{ height: "100vh" }}>
 
                 <LayersControl position="topright">
                     <BaseLayer checked name="tileLayer">
@@ -50,29 +46,42 @@ class App extends Component {
                             layers="Raster"
                             version='1.3.0'
                             transparent='true'
-                            format="image/png" 
+                            format="image/png"
                             url="http://mapy.geoportal.gov.pl/wss/service/img/guest/ORTO/MapServer/WMSServer"
                         />
                     </Overlay>
                     <Overlay name="dzialki">
                         <WMSTileLayer
-                            layers="Dzialki"     
-                            format="image/png"  
-                            transparent='true'                       
+                            layers="Dzialki"
+                            format="image/png"
+                            transparent='true'
                             url="http://mapy.geoportal.gov.pl/wss/service/pub/guest/G2_GO_WMS/MapServer/WMSServer"
                         />
                     </Overlay>
                     <Overlay name="numery działek">
                         <WMSTileLayer
                             layers="NumeryDzialek"
-                            format="image/png"  
-                            transparent='true'                    
+                            format="image/png"
+                            transparent='true'
                             url="http://mapy.geoportal.gov.pl/wss/service/pub/guest/G2_GO_WMS/MapServer/WMSServer"
                         />
                     </Overlay>
                 </LayersControl>
+
+                <FeatureGroup>
+                    <EditControl
+                        position='topright'
+                        onEdited={this._onEditPath}
+                        onCreated={this._onCreate}
+                        onDeleted={this._onDeleted}
+                        draw={{
+                            rectangle: false
+                        }}
+                    />
+                    <Circle center={[51.51, -0.06]} radius={200} />
+                </FeatureGroup>
             </Map>
-        ) : <div>Loading map</div>
+        );
     }
 }
 
