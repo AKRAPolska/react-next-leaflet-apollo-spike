@@ -22,7 +22,6 @@ class App extends Component {
 
 	render() {
 		const center = [ 52, 19 ];
-		const TRUE = true;
 		const OPACITY = 0.5;
 
 		const { Map, TileLayer, WMSTileLayer, LayersControl, FeatureGroup, Circle } = this.RL;
