@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
 class FullScreenMap extends Component {
   constructor() {
     super();
     this.state = {
-      showMap: false
+      showMap: false,
     };
 
     this.RL = { LayersControl: {} };
@@ -13,26 +13,22 @@ class FullScreenMap extends Component {
   }
 
   componentDidMount() {
-    this.RL = require("react-leaflet");
-    this.RLD = require("react-leaflet-draw");
+    /* eslint-disable */
+    this.RL = require('react-leaflet');
+    this.RLD = require('react-leaflet-draw');
 
     this.setState({
-      showMap: true
+      showMap: true,
     });
+    /* eslint-enable */
   }
 
   render() {
     const center = [52, 19];
-    const TRUE = true;
     const OPACITY = 0.5;
 
     const {
-      Map,
-      TileLayer,
-      WMSTileLayer,
-      LayersControl,
-      FeatureGroup,
-      Circle
+      Map, TileLayer, WMSTileLayer, LayersControl, FeatureGroup, Circle,
     } = this.RL;
     const { BaseLayer, Overlay } = LayersControl;
     const { EditControl } = this.RLD;
@@ -40,7 +36,7 @@ class FullScreenMap extends Component {
     return this.state.showMap ? (
       <div>
         <Title>Coś ładnego</Title>
-        <Map center={center} zoom={7} style={{ height: "500px" }}>
+        <Map center={center} zoom={7} style={{ height: '500px' }}>
           <LayersControl position="topright">
             <BaseLayer checked name="tileLayer">
               <TileLayer
@@ -85,11 +81,8 @@ class FullScreenMap extends Component {
           <FeatureGroup>
             <EditControl
               position="topright"
-              onEdited={this._onEditPath}
-              onCreated={this._onCreate}
-              onDeleted={this._onDeleted}
               draw={{
-                rectangle: false
+                rectangle: false,
               }}
             />
             <Circle center={[51.51, -0.06]} radius={200} />
