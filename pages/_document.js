@@ -32,6 +32,16 @@ export default class MyDocument extends Document {
 }
 
 injectGlobal`
+  body, html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  body>div, #__next, #__next>div, #__next>div>div {
+    height: 100%;
+  }
+
   .sr-only {
     display: none;
   }
