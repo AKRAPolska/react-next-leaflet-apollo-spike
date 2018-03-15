@@ -1,7 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
+import withData from '../lib/apollo';
 import FullScreenMap from '../components/FullScreenMap';
+import SampleData from '../components/SampleData';
 
 const TwoColumnTable = styled.div`
   height: 100%;
@@ -10,6 +12,12 @@ const TwoColumnTable = styled.div`
 
 const Column = styled.div`
   flex: 1;
+
+  ${props =>
+    props.withPadding &&
+    css`
+      padding: 10px;
+    `};
 `;
 
 const Index = () => (
@@ -17,8 +25,11 @@ const Index = () => (
     <Column>
       <FullScreenMap />
     </Column>
-    <Column />
+    <Column withPadding>
+      <h1>Dane z graphql</h1>
+      <SampleData />
+    </Column>
   </TwoColumnTable>
 );
 
-export default Index;
+export default withData(Index);
