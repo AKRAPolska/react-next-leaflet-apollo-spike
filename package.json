@@ -13,11 +13,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "antd": "^3.3.0",
     "apollo-cache-inmemory": "^1.1.11",
     "apollo-client": "^2.2.7",
     "apollo-link": "^1.2.1",
     "apollo-link-http": "^1.5.3",
     "babel-eslint": "^8.2.2",
+    "babel-plugin-inline-import": "^2.0.6",
     "babel-preset-stage-2": "^6.24.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",

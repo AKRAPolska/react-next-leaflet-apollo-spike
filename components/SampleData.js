@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
+import { Button } from 'antd';
 import gql from 'graphql-tag';
 
 class SampleData extends React.Component {
@@ -31,14 +32,17 @@ class SampleData extends React.Component {
 
     return (
       <React.Fragment>
-        <button onClick={this.refreshPosts}>Refresh</button>
+        <Button onClick={this.refreshPosts}>Refresh</Button>
         <br />
         <br />
         {this.props.feedQuery.feed &&
           this.props.feedQuery.feed.map(post => (
             <React.Fragment>
               <span key={post.id}>{post.title} | </span>
-              <button onClick={() => this.deletePost(post.id)}> Delete </button>
+              <Button type="danger" onClick={() => this.deletePost(post.id)}>
+                {' '}
+                Delete{' '}
+              </Button>
               <br />
               <br />
             </React.Fragment>
