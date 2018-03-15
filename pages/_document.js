@@ -1,6 +1,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet, injectGlobal } from 'styled-components';
+import stylesheet from 'antd/dist/antd.min.css';
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -32,6 +33,8 @@ export default class MyDocument extends Document {
 }
 
 injectGlobal`
+  ${stylesheet}
+
   body, html {
     height: 100%;
     padding: 0;
