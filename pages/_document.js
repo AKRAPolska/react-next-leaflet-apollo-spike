@@ -32,6 +32,7 @@ export default class MyDocument extends Document {
   }
 }
 
+/* eslint-disable */
 injectGlobal`
   ${stylesheet}
 
@@ -41,7 +42,7 @@ injectGlobal`
     margin: 0;
   }
 
-  body>div, #__next, #__next>div, #__next>div>div {
+  body>div:first-child, #__next, #__next>div, #__next>div>div {
     height: 100%;
   }
 
@@ -49,3 +50,4 @@ injectGlobal`
     display: none;
   }
 `;
+/* eslint-enable */
