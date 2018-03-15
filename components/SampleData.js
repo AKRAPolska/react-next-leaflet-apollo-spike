@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import { Button } from 'antd';
 import gql from 'graphql-tag';
@@ -47,11 +48,15 @@ class SampleData extends React.Component {
               <br />
             </React.Fragment>
           ))}
-        {this.props.children}
       </React.Fragment>
     );
   }
 }
+
+SampleData.propTypes = {
+  feedQuery: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
+};
 
 const FEED_QUERY = gql`
   query FeedQuery {
