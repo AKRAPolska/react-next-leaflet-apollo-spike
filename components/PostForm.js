@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
+import { Form, Button, Input, Icon } from 'antd';
 
+const FormItem = Form.Item;
 
 class PostForm extends React.Component {
   state = {
@@ -20,11 +22,15 @@ class PostForm extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <form onSubmit={this.handlePost}>
-          <h2>Add new</h2>
-          <input type="text" placeholder="Post title" onChange={e => this.setState({ title: e.target.value })} value={this.state.title} />
-          <input type="submit" disabled={!this.state.title} value="Create" />
-        </form>
+        <Form onSubmit={this.handlePost} layout="inline" className="login-form">
+          <h4>Dodaj nowy element</h4>
+          <FormItem>
+            <Input type="text" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Tytuł" onChange={e => this.setState({ title: e.target.value })} value={this.state.title} />
+          </FormItem>
+          <FormItem>
+            <Button type="primary" htmlType="submit" disabled={!this.state.title}>Dodaj</Button>
+          </FormItem>
+        </Form>
       </React.Fragment>
     );
   }

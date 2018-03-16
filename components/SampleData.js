@@ -34,6 +34,8 @@ class SampleData extends React.Component {
 
     return (
       <React.Fragment>
+        <PostForm />
+        <br />
         <Button onClick={this.refreshPosts}>Refresh</Button>
         <br />
         <br />
@@ -46,7 +48,6 @@ class SampleData extends React.Component {
               <br />
             </React.Fragment>
           ))}
-        <PostForm />
       </React.Fragment>
     );
   }
